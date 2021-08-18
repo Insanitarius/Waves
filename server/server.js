@@ -5,6 +5,7 @@ require("dotenv").config();
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const routes = require("./routes");
+const { handleError, convertToApiError } = require("./middleware/apiError");
 
 const mongoURI = `${process.env.DATABASE}`;
 mongoose.connect(mongoURI, {
@@ -23,6 +24,14 @@ app.use(mongoSanitize());
 
 ///routes | should be after parsing and sanitization
 app.use("/api", routes);
+
+/////HANDLE ERROR | should be at the END
+////If error is not recognized..... convert to api error
+app.use(convertToApiError);
+
+app.use((err, req, res, next) => {
+  handleError(err, res);
+});
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
