@@ -5,7 +5,10 @@ require("dotenv").config();
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
 const routes = require("./routes");
+const passport = require("passport");
+
 const { handleError, convertToApiError } = require("./middleware/apiError");
+const { jwtStrategy } = require("./middleware/passport");
 
 const mongoURI = `${process.env.DATABASE}`;
 mongoose.connect(mongoURI, {
@@ -21,6 +24,10 @@ app.use(express.json());
 ///Middleware to sanitize
 app.use(xss());
 app.use(mongoSanitize());
+
+//Passport
+app.use(passport.initialize());
+passport.use("jwt", jwtStrategy);
 
 ///routes | should be after parsing and sanitization
 app.use("/api", routes);
