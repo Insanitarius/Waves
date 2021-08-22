@@ -15,11 +15,15 @@ let grantObject = {
       "update:any": ["*"],
       "delete:own": ["*"],
     },
+    brand: allRights,
   },
   user: {
     profile: {
       "read:own": ["*", "!password", "!_id"],
       "update:own": ["*", "!password", "!_id"],
+    },
+    brand: {
+      "read:any": ["*"],
     },
   },
 };
