@@ -16,6 +16,8 @@ let grantObject = {
       "delete:own": ["*"],
     },
     brand: allRights,
+    product: allRights,
+    site: allRights,
   },
   user: {
     profile: {
@@ -23,6 +25,9 @@ let grantObject = {
       "update:own": ["*", "!password", "!_id"],
     },
     brand: {
+      "read:any": ["*"],
+    },
+    product: {
       "read:any": ["*"],
     },
   },
