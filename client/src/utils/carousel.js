@@ -29,7 +29,8 @@ const Carousel = ({ items }) => {
               <div className="featured_action">
                 <div className="tag title">{item.lineOne}</div>
                 <div className="tag low_title">{item.lineTwo}</div>
-                <div>
+                {/* FIXME */}
+                <div className="btn">
                   <WavesButton
                     type="default"
                     title={item.linkTitle}

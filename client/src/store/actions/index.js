@@ -1,10 +1,28 @@
 import {
+  AUTH_USER,
+  SIGN_OUT,
   GET_PROD_BY_SOLD,
   GET_PROD_BY_DATE,
   ERROR_GLOBAL,
   SUCCESS_GLOBAL,
   CLEAR_NOTIFICATIONS,
 } from "../types";
+
+/////////////////////////////////User/////////////////////////////////
+
+export const userAuthenticate = (user)=>({
+  type: AUTH_USER,
+  payload: user
+})
+
+export const userSignOut = () =>({
+  type: SIGN_OUT
+})
+
+
+
+
+
 
 /////////////////////////////////Products/////////////////////////////////
 

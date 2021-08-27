@@ -12,7 +12,7 @@ const SlimPromotion = ({ items }) => {
       >
         <div className="tag title">{items.lineOne}</div>
         <div className="tag low_title">{items.lineTwo}</div>
-        <div className="btn">
+        <div className="btn" style={{ display: "flex" }}>
           <WavesButton
             type="default"
             title={items.linkTitle}
