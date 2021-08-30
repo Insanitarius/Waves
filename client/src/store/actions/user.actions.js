@@ -63,7 +63,50 @@ export const userIsAuth = () => {
 export const userSignOut = () => {
   return async (dispatch) => {
     removeTokenCookie();
-    dispatch(actions.userSignOut())
+    dispatch(actions.userSignOut());
     dispatch(actions.successGlobal("Logged out successfully!"));
+  };
+};
+
+export const userUpdateProfile = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      const profile = await axios.patch(
+        `/api/users/profile`,
+        { data: data },
+        getAuthHeader()
+      );
+
+      const userData = {
+        ...getState().users.data,
+        firstname: profile.data.firstname,
+        lastname: profile.data.lastname,
+      };
+      dispatch(actions.userUpdateProfile(userData));
+      dispatch(actions.successGlobal("Profile updated successfully!"));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+export const userChangeEmail = (data) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(
+        `/api/users/email`,
+        { newemail: data.newemail },
+        getAuthHeader()
+      );
+
+      dispatch(actions.userChangeEmail(data.newemail));
+      dispatch(
+        actions.successGlobal(
+          "Email updated successfully! Please verify your mail inorder to signin again!"
+        )
+      );
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
   };
 };

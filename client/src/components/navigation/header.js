@@ -3,21 +3,38 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Header = ({ user, signOutUser }) => {
+  const test = 0;
   return (
     <>
       <header className="bck_b_light">
         <div className="container">
           <div className="left">
-            <div className="logo">WAVES</div>
+            <div className="logo">
+              <Link className="logo" to="/">
+                WAVES
+              </Link>
+            </div>
           </div>
           <div className="right">
             <div className="top">
               {user.auth ? (
                 <>
-                  <div className="cart_link">
-                    <span>0</span>
+                  {/* <div className="cart_link">
+                    <span>1</span>
                     <Link to="/dashboard/user/user_cart">My Cart</Link>
-                  </div>
+                  </div> */}
+                  {/* XXX */}
+                  <Link to="/dashboard/user/user_cart">
+                    <div className="cart_link">
+                      <span
+                        style={{ left: `${test >= 10 ? "-47px" : "-40px"}` }}
+                      >
+                        {test}
+                      </span>
+                    </div>
+                    My Cart
+                  </Link>
+                  {/* XXX*/}
                   <Link to="/dashboard">My Account</Link>
                   <span onClick={() => signOutUser()}> Log out</span>
                 </>

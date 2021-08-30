@@ -17,6 +17,7 @@ const addProduct = async (body) => {
 
 const getProductById = async (_id) => {
   try {
+    //FIXME check _id  -> {_id}
     const product = await Product.findById(_id).populate("brand");
     if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
     return product;
@@ -41,7 +42,7 @@ const updateProductById = async (_id, body) => {
 
 const deleteProductById = async (_id) => {
   try {
-    const product = await Product.findOneAndDelete(_id);
+    const product = await Product.findOneAndDelete({ _id });
     if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
     return product;
   } catch (error) {
@@ -116,6 +117,7 @@ const paginateProducts = async (req) => {
     let aggQuery = Product.aggregate(aggQueryArray);
     const options = {
       page: req.body.page,
+      //TODO: add a way to manage limit from front end
       limit: 2,
       sort: { date: "desc" },
     };

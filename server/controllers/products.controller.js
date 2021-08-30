@@ -1,3 +1,4 @@
+//FIXME: remove api error
 const { ApiError } = require("../middleware/apiError");
 const { productsService } = require("../services");
 
@@ -54,6 +55,5 @@ const productsController = {
     }
   },
 };
-
 
 module.exports = productsController;

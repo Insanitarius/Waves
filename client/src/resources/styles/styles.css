@@ -1,3 +1,35 @@
+/*============================
+            CSS BUG FIX
+==============================*/
+
+
+.MuiInputLabel-outlined.MuiInputLabel-shrink {
+    transform: translate(14px, -10px) scale(0.75) !important
+}
+
+
+.MuiInputLabel-outlined {
+    z-index: 1;
+    transform: translate(14px, 20px) scale(1);
+    pointer-events: none;
+    background: white !important;
+    padding-left: 6px !important;
+    padding-right: 10px !important;
+}
+
+
+
+
+
+
+
+
+
+/*============================
+            MAIN CSS
+==============================*/
+
+
 body {
     margin:0;
     padding:0;
@@ -302,6 +334,10 @@ select {
             HEADER
 ==============================*/
 header {
+    /* FIXME */
+    z-index: 1000;
+    top: 0;
+    position: sticky;
     width: 100%;
     border-bottom: 1px solid white;
 }
@@ -352,7 +388,7 @@ header .cart_link {
     position: relative;
 }
 
-header .cart_link span {
+/* header .cart_link span {
     position: absolute;
     background: red;
     top: 1px;
@@ -361,7 +397,20 @@ header .cart_link span {
     border-radius: 50%;
     padding: 0px 7px 2px 7px;
     font-size: 12px;
+} */
+
+
+
+header .cart_link span {
+    position: absolute;
+    background: red;
+    top: -15px;
+    color: #ffff;
+    border-radius: 20%;
+    padding: 0px 5px 1px 5px;
+    font-size: 12px;
 }
+
 header .log_out_link {
     cursor: pointer;
     display: inline-block;
@@ -657,7 +706,7 @@ footer .business_nfo .nfo {
 }
 
 .collapse_items_wrapper .MuiList-root {
-    borderBottom: '1px solid #dbdbdb'
+    border-bottom: '1px solid #dbdbdb'
 }
 
 .collapse_items_wrapper .MuiListItem-root {
