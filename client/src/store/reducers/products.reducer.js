@@ -2,8 +2,9 @@ import {
   GET_PROD_BY_SOLD,
   GET_PROD_BY_DATE,
   GET_PROD_PAGINATE,
+  GET_PROD_BY_ID,
+  CLEAR_PRODUCT_BY_ID,
   ADD_PRODUCT,
-  CLEAR_ADDED_PRODUCT,
 } from "../types";
 
 export default function productsReducer(state = {}, action) {
@@ -14,11 +15,13 @@ export default function productsReducer(state = {}, action) {
       return { ...state, byDate: action.payload };
     case GET_PROD_PAGINATE:
       return { ...state, byPaginate: action.payload };
+    case GET_PROD_BY_ID:
+      return { ...state, byId: action.payload };
+    case CLEAR_PRODUCT_BY_ID:
+      return { ...state, byId: null };
     //TODO
     case ADD_PRODUCT:
       return { ...state, lastAdded: action.payload };
-    case CLEAR_ADDED_PRODUCT:
-      return { ...state, lastAdded: null };
     default:
       return state;
   }

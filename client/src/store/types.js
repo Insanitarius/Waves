@@ -2,9 +2,11 @@
 export const GET_PROD_BY_SOLD = "get_prod_by_sold";
 export const GET_PROD_BY_DATE = "get_prod_by_date";
 export const GET_PROD_PAGINATE = "get_prod_paginate";
+export const GET_PROD_BY_ID = "get_prod_by_id";
+export const CLEAR_PRODUCT_BY_ID = "clear_product_by_id";
+
 export const REMOVE_PRODUCT = "remove_product";
 export const ADD_PRODUCT = "add_product";
-export const CLEAR_ADDED_PRODUCT = "clear_added_product";
 
 /////////////////////////////////Notificaions/////////////////////////////////
 export const ERROR_GLOBAL = "error_global";

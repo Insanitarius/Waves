@@ -72,3 +72,25 @@ export const addProduct = (data) => {
     }
   };
 };
+
+export const productById = (id) => {
+  return async (dispatch) => {
+    try {
+      const product = await axios.get(`/api/products/product/${id}`);
+      dispatch(actions.productById(product.data));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+export const updateProduct = (values, id) => {
+  return async (dispatch) => {
+    try {
+      await axios.patch(`/api/products/product/${id}`, values, getAuthHeader());
+      dispatch(actions.successGlobal("Product updated successfully!"));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};

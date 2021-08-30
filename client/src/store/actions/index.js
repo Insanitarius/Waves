@@ -6,9 +6,10 @@ import {
   GET_PROD_BY_SOLD,
   GET_PROD_BY_DATE,
   GET_PROD_PAGINATE,
+  GET_PROD_BY_ID,
+  CLEAR_PRODUCT_BY_ID,
   REMOVE_PRODUCT,
   ADD_PRODUCT,
-  CLEAR_ADDED_PRODUCT,
   GET_ALL_BRANDS,
   ERROR_GLOBAL,
   SUCCESS_GLOBAL,
@@ -53,21 +54,27 @@ export const productsByPaginate = (products) => ({
   payload: products,
 });
 
+export const productById = (product) => ({
+  type: GET_PROD_BY_ID,
+  payload: product,
+});
+
+export const clearProductById = () => {
+  return {
+    type: CLEAR_PRODUCT_BY_ID,
+  };
+};
+
+//TODO
+
 export const removeProduct = () => ({
   type: REMOVE_PRODUCT,
 });
 
-//TODO
 export const addProduct = (product) => ({
   type: ADD_PRODUCT,
   payload: product,
 });
-
-export const clearAddedProduct = () => {
-  return {
-    type: CLEAR_ADDED_PRODUCT,
-  };
-};
 
 /////////////////////////////////Brands/////////////////////////////////
 export const getAllBrands = (brands) => ({

@@ -16,6 +16,7 @@ import UserInfo from "./components/dashboard/user/info";
 import AdminProducts from "./components/dashboard/admin/products";
 import ScrollToTop from "./utils/scrollToTop";
 import AddProduct from "./components/dashboard/admin/products/manage/add";
+import EditProduct from "./components/dashboard/admin/products/manage/edit";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -44,6 +45,10 @@ const Routes = (props) => {
           <MainLayout>
             <ScrollToTop />
             <Switch>
+            <Route
+                path="/dashboard/admin/edit_product/:id"
+                component={AuthGuard(EditProduct)}
+              />
               <Route
                 path="/dashboard/admin/add_product"
                 component={AuthGuard(AddProduct)}

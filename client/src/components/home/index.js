@@ -47,7 +47,7 @@ const Home = () => {
       )}
       <SlimPromotion items={slimPromotion} />
       {byDate ? (
-        <CardBlock items={bySold} title="Latest guitars on the shop" />
+        <CardBlock items={byDate} title="Latest guitars on the shop" />
       ) : (
         <Loader />
       )}

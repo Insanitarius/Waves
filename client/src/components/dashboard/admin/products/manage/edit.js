@@ -2,12 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 
-import { addProduct } from "../../../../../store/actions/product.actions";
+import {
+  updateProduct,
+  productById,
+} from "../../../../../store/actions/product.actions";
+import { clearProductById } from "../../../../../store/actions";
 import { getAllBrands } from "../../../../../store/actions/brands.actions";
 import DashboardLayout from "../../../../../hoc/dashboardLayout";
 import { errorHelper } from "../../../../../utils/tools";
 import Loader from "../../../../../utils/loader";
-import { validation } from "./formValues";
+import { validation, formValues, getValuesToEdit } from "./formValues";
 import UploadImage from "./uploadImage";
 import ImageViewer from "./imageViewer";
 
@@ -21,24 +25,17 @@ import {
   FormHelperText,
 } from "@material-ui/core";
 
-const AddProduct = (props) => {
+const EditProduct = (props) => {
+  const [values, setValues] = useState(formValues);
   const [loading, setLoading] = useState(false);
+  const products = useSelector((state) => state.products);
   const notifications = useSelector((state) => state.notifications);
   const brands = useSelector((state) => state.brands);
   const dispatch = useDispatch();
 
   const formik = useFormik({
-    initialValues: {
-      model: "",
-      brand: "",
-      frets: "",
-      woodtype: "",
-      description: "",
-      price: "",
-      available: "",
-      shipping: false,
-      images: [],
-    },
+    enableReinitialize: true,
+    initialValues: values,
     validationSchema: validation,
     onSubmit: (values) => {
       handleSubmit(values);
@@ -47,7 +44,7 @@ const AddProduct = (props) => {
 
   const handleSubmit = (values) => {
     setLoading(true);
-    dispatch(addProduct(values));
+    dispatch(updateProduct(values, props.match.params.id));
   };
 
   const handleImageUrl = (image) => {
@@ -63,20 +60,35 @@ const AddProduct = (props) => {
   };
 
   useEffect(() => {
-    if (notifications && notifications.success) {
-      props.history.push("/dashboard/admin/admin_products");
-    }
-    if (notifications && notifications.error) {
+    if (notifications && (notifications.success || notifications.error)) {
       setLoading(false);
     }
-  }, [notifications, props.history]);
+  }, [notifications]);
 
   useEffect(() => {
+    const param = props.match.params.id;
     dispatch(getAllBrands());
+    setLoading(true);
+    if (param) {
+      dispatch(productById(param));
+    }
+  }, [dispatch, props.match.params.id]);
+
+  useEffect(() => {
+    if (products && products.byId) {
+      setValues(getValuesToEdit(products.byId));
+      setLoading(false);
+    }
+  }, [products]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearProductById());
+    };
   }, [dispatch]);
 
   return (
-    <DashboardLayout title="Add Product">
+    <DashboardLayout title="Edit Product">
       {loading ? (
         <Loader />
       ) : (
@@ -216,7 +228,7 @@ const AddProduct = (props) => {
             <Divider className="mt-3 mb-3" />
 
             <Button variant="contained" color="primary" type="submit">
-              Add product
+              Edit product
             </Button>
           </form>
         </>
@@ -225,4 +237,4 @@ const AddProduct = (props) => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;
