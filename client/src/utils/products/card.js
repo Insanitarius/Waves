@@ -10,7 +10,11 @@ const Card = (props) => {
     <div className={`card_item_wrapper ${props.grid ? "grid_bars" : ""}`}>
       <div
         className="image"
-        style={{ background: `url(${renderCardImage(props.item.images)})` }}
+        style={{
+          background: `url(${renderCardImage(props.item.images)})`,
+          height: "278px",
+          width: "211px",
+        }}
       ></div>
       <div className="action_container">
         <div className="tags">
@@ -21,7 +25,7 @@ const Card = (props) => {
 
         {props.grid ? (
           <div className="description">
-            <p>{props.item.description}</p>
+            <p className="mt-3">{props.item.description}</p>
           </div>
         ) : null}
 

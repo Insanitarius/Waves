@@ -18,7 +18,23 @@
 }
 
 /* Hide Scroll bar from view */
-/* ::-webkit-scrollbar {display:none;} */
+::-webkit-scrollbar {
+   width: 6px;
+   height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background:#F0F0F0
+}
+
+::-webkit-scrollbar-thumb{
+    background-image:linear-gradient(to right, #BEBEBE, #909090);
+    border-radius: 90px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background-image:linear-gradient(to right, #808080, #707070);
+}
 
 
 
@@ -34,7 +50,8 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #404040;
     width: 100%;
-    overflow-x: hidden;
+    /* TODO uncomment it once the fixes are done */
+    /* overflow-x: hidden; */
 }
 
 a:hover {
@@ -630,6 +647,18 @@ footer .business_nfo .nfo {
 .card_item_wrapper .tags .name {
     font-size: 21px;
     font-weight: 700;
+    overflow: hidden;
+    /* HACK */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    @supports (-webkit-line-clamp: 2) {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: initial;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
 }
 
 .card_item_wrapper .tags .price {
@@ -664,6 +693,9 @@ footer .business_nfo .nfo {
 
 .card_item_wrapper.grid_bars .action_container {
     flex-grow: 1;
+    /* HACK */
+    height: 276;
+    width: 507px;
     border: 1px solid #e6e6e6;
 }
 
@@ -671,6 +703,15 @@ footer .business_nfo .nfo {
     clear:both;
     padding: 0px 25px;
     border-top: 1px solid #eeeeee;
+
+    /* FIXME */
+    word-wrap: break-word;
+    /* HACK */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6; 
+    -webkit-box-orient: vertical;
 }
 
 .card_item_wrapper.grid_bars .tags{
@@ -694,8 +735,12 @@ footer .business_nfo .nfo {
 
 .card_item_wrapper.grid_bars .actions {
     clear:both;
-    float:right;
+    /* float:right; */
     padding: 10px 20px 0px 15px;
+    /* HACK */
+     position: absolute;
+     bottom: 20px;
+     right: 20px;
 }
 
 /*============================
@@ -808,6 +853,9 @@ footer .business_nfo .nfo {
 }
 
 .product_detail_wrapper .product_actions .price{
+    /* TODO */
+    padding-left: 10px;
+    color: #B12704;
     font-size: 40px;
     font-weight: 300;
 }

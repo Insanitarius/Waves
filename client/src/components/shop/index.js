@@ -9,6 +9,7 @@ import CardBlock from "../../utils/products/card.blocks";
 import PaginateNav from "../../utils/paginateNav";
 import SearchBar from "./searchBar";
 import CollapseCheckbox from "./collapseCheckbox";
+import RangeSelector from "./rangeSelector";
 
 const defaultValues = {
   keywords: "",
@@ -58,6 +59,10 @@ const Shop = () => {
     }
   };
 
+  const handleRange = (values) => {
+    setSearchValues({ min: values[0], max: values[1] });
+  };
+
   useEffect(() => {
     dispatch(getAllBrands());
     dispatch(productsByPaginate());
@@ -95,7 +100,11 @@ const Shop = () => {
               ]}
               handleFilters={(filters) => handleFilters(filters, "frets")}
             />
-            collapse frets rage select
+            <RangeSelector
+              initState={false}
+              title="Price Range"
+              handleRange={(values) => handleRange(values)}
+            />
           </div>
           <div className="right">
             <div className="shop_options">

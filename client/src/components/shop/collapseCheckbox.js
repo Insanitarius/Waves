@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -44,12 +44,8 @@ function CollapseCheckbox(props) {
       newChecked.splice(currentIndex, 1);
     }
     setChecked(newChecked);
-    props.handleFilters(newChecked)
+    props.handleFilters(newChecked);
   };
-
-//   useEffect(() => {
-//     console.log(checked);
-//   }, [checked]);
 
   return (
     <div className="collapse_items_wrapper">
