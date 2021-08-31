@@ -126,7 +126,7 @@ const paginateProducts = async (req) => {
     const options = {
       page: req.body.page,
       //TODO: add a way to manage limit from front end
-      limit: 2,
+      limit: 6,
       sort: { date: "desc" },
     };
 

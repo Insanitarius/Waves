@@ -17,10 +17,8 @@
     padding-right: 10px !important;
 }
 
-
-
-
-
+/* Hide Scroll bar from view */
+/* ::-webkit-scrollbar {display:none;} */
 
 
 
@@ -35,6 +33,8 @@ body {
     padding:0;
     font-family: 'Roboto', sans-serif;
     color: #404040;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 a:hover {
@@ -75,10 +75,16 @@ a {
 
 .bck_b_light {
     background: #272723;
+    min-width: 100vw;
+    /* FIXME */
+    /* overflow: auto; */
 }
 
 .bck_b_dark {
     background: #272723;
+    min-width: 100vw;
+    /* overflow: auto; */
+
 }
 
 .dialog_alert {
@@ -513,6 +519,7 @@ footer .business_nfo .nfo {
     background-position: top center !important;
     padding: 73px;
     box-sizing: border-box;
+    min-width: 100vw;
 }
 
 
@@ -552,6 +559,7 @@ footer .business_nfo .nfo {
 
 .card_block {
     margin: 110px 0px;
+    overflow: auto;
 }
 
 .card_block .title {
@@ -625,7 +633,8 @@ footer .business_nfo .nfo {
 }
 
 .card_item_wrapper .tags .price {
-    font-weight: 300;
+    color: #B12704;
+    font-weight: 400;
     font-size: 21px;
 }
 
@@ -758,7 +767,7 @@ footer .business_nfo .nfo {
 }
 
 .slick-slide .img-block {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background-size: cover !important;
 }
@@ -926,6 +935,7 @@ footer .business_nfo .nfo {
 .user_container .user_left_nav {
     border-right: 1px solid #f8f8f8; 
     margin-top: 30px;
+    overflow:hidden;
 }
 
 .user_container .user_left_nav .links {

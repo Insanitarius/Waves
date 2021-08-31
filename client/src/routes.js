@@ -17,6 +17,7 @@ import AdminProducts from "./components/dashboard/admin/products";
 import ScrollToTop from "./utils/scrollToTop";
 import AddProduct from "./components/dashboard/admin/products/manage/add";
 import EditProduct from "./components/dashboard/admin/products/manage/edit";
+import Shop from "./components/shop";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,7 @@ const Routes = (props) => {
                 component={AuthGuard(UserInfo)}
               />
               <Route path="/dashboard" component={AuthGuard(Dashboard)} />
+              <Route path="/shop" component={Shop} />
               <Route path="/sign_in" component={RegisterLogin} />
               <Route path="/" component={Home} />
             </Switch>

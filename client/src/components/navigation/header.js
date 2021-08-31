@@ -6,8 +6,8 @@ const Header = ({ user, signOutUser }) => {
   const test = 0;
   return (
     <>
-      <header className="bck_b_light">
-        <div className="container">
+      <header className="container bck_b_light">
+        <div className="container" style={{display: "flex"}}>
           <div className="left">
             <div className="logo">
               <Link className="logo" to="/">

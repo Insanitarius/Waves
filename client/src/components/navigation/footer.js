@@ -10,7 +10,7 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <div className="bck_b_dark">
+        <div className=" container bck_b_dark">
           <div className="container">
             <div className="logo">WAVES</div>
             <div className="wrapper">

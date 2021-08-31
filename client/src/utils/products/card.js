@@ -7,7 +7,7 @@ const Card = (props) => {
   };
 
   return (
-    <div className={`card_item_wrapper ${props.grid ? "grid_bards" : ""}`}>
+    <div className={`card_item_wrapper ${props.grid ? "grid_bars" : ""}`}>
       <div
         className="image"
         style={{ background: `url(${renderCardImage(props.item.images)})` }}
@@ -16,7 +16,7 @@ const Card = (props) => {
         <div className="tags">
           <div className="brand">{props.item.brand.name}</div>
           <div className="name">{props.item.model}</div>
-          <div className="name">${props.item.price}</div>
+          <div className="price">${props.item.price}</div>
         </div>
 
         {props.grid ? (

@@ -43,7 +43,7 @@ const AdminProducts = (props) => {
       keywords: Yup.string()
         // .required("Please enter something")
         .min(3, "Min 3 characters required to search")
-        .max(20, "Your search is too long"),
+        .max(200, "Your search is too long"),
     }),
     onSubmit: (values) => {
       setSearchValues({ keywords: values.keywords.trim(), page: 1 });
