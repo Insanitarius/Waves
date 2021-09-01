@@ -92,6 +92,7 @@ const AdminProducts = (props) => {
 
   return (
     <DashboardLayout title="Products">
+      <hr />
       <div className="products_table">
         <div className="mt-3">
           <form onSubmit={formik.handleSubmit}>
@@ -158,7 +159,7 @@ const AdminProducts = (props) => {
             </div>
           </form>
         </div>
-        <hr />
+        <hr style={{ height: "1px" }} />
         <ProductsTable
           prods={products.byPaginate}
           prev={(prev) => goToPage(prev)}

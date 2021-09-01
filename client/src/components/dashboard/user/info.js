@@ -34,6 +34,7 @@ const UserInfo = ({ users }) => {
 
   return (
     <DashboardLayout title="User information">
+      <hr />
       <form
         className="mt-3 article_form"
         style={{ maxWidth: "250px" }}
@@ -63,7 +64,7 @@ const UserInfo = ({ users }) => {
           Edit profile
         </Button>
       </form>
-      <hr />
+      <hr style={{ height: "1px" }} />
       <div>
         <EmailStepper users={users} />
       </div>

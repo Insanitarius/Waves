@@ -38,7 +38,9 @@ export const userSignIn = (values) => {
       if (user.data.user.verified) {
         dispatch(actions.successGlobal("Welcome back!"));
       } else {
-        dispatch(actions.successGlobal("Welcome to Waves!"));
+        dispatch(
+          actions.successGlobal("Welcome to Waves! Please verify your email!")
+        );
       }
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
@@ -110,3 +112,52 @@ export const userChangeEmail = (data) => {
     }
   };
 };
+
+export const userAddToCart = (item) => {
+  return async (dispatch, getState) => {
+    try {
+      const cart = getState().users.cart;
+      dispatch(actions.userAddToCart([...cart, item]));
+
+      // await axios.patch(
+      //   `/api/users/email`,
+      //   { newemail: data.newemail },
+      //   getAuthHeader()
+      // );
+
+      // dispatch(actions.userChangeEmail(data.newemail));
+      dispatch(actions.successGlobal(`${item.model} added to cart!`));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+export const removeFromCart = (position) => {
+  return async (dispatch, getState) => {
+    try {
+      const cart = getState().users.cart;
+      const model = cart[position].model;
+      cart.splice(position, 1);
+
+      dispatch(actions.userAddToCart(cart));
+      dispatch(actions.successGlobal(`${model} removed from cart!`));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+
+export const userPaymentSuccess = (orderID) =>{
+  return async (dispatch) => {
+    try {
+      const user = await axios.post(`/api/transaction/`,{orderID},getAuthHeader())
+
+      dispatch(actions.userPaymentSuccess(user.data));
+      dispatch(actions.successGlobal("Payment Successful!!"));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+}

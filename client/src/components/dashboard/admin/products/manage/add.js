@@ -77,6 +77,7 @@ const AddProduct = (props) => {
 
   return (
     <DashboardLayout title="Add Product">
+      <hr />
       {loading ? (
         <Loader />
       ) : (

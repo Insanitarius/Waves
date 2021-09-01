@@ -4,15 +4,15 @@ import { Link } from "react-router-dom";
 
 export const links = [
   {
-    name: "My account",
+    name: "My Account",
     linkTo: "/dashboard",
   },
   {
-    name: "User information",
+    name: "User Information",
     linkTo: "/dashboard/user/user_info",
   },
   {
-    name: "My cart",
+    name: "My Cart",
     linkTo: "/dashboard/user/user_cart",
   },
 ];
@@ -23,7 +23,7 @@ export const admin = [
     linkTo: "/dashboard/admin/admin_products",
   },
   {
-    name: "Manage site",
+    name: "Manage Site",
     linkTo: "/dashboard/user/manage_site",
   },
 ];
@@ -42,7 +42,7 @@ const DashboardLayout = (props) => {
     <div className="container">
       <div className="user_container page_container">
         <div className="user_left_nav">
-          <h2>My account</h2>
+          <h2>Account Details</h2>
           <div className="links">{generateLinks(links)}</div>
           {user && user.data.role === "admin" ? (
             <div>

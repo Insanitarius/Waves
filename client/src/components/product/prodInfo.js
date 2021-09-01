@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { WavesButton } from "../../utils/tools";
 import { useSelector, useDispatch } from "react-redux";
+import AddToCartHandler from "../../utils/addToCartHandler";
+import { userAddToCart } from "../../store/actions/user.actions";
 
 import LocalShippingIcon from "@material-ui/icons/LocalShipping";
 import DoneOutlineIcon from "@material-ui/icons/DoneOutline";
@@ -8,6 +10,26 @@ import SentimentVeryDissatisfiedIcon from "@material-ui/icons/SentimentVeryDissa
 
 const ProdInfo = (props) => {
   const detail = props.detail;
+  const [modal, setModal] = useState(false);
+  const [errorType, setErrorType] = useState(null);
+  const user = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+
+  const handleClose = () => setModal(false);
+
+  const handleAddToCart = (item) => {
+    if (!user.auth) {
+      setModal(true);
+      setErrorType("auth");
+      return false;
+    }
+    if (!user.data.verified) {
+      setModal(true);
+      setErrorType("verify");
+      return false;
+    }
+    dispatch(userAddToCart(item));
+  };
 
   const showProdTags = (detail) => (
     <div className="product_tags">
@@ -47,35 +69,31 @@ const ProdInfo = (props) => {
     </div>
   );
 
-
-  const showProdActions = (detail)=>(
-      <div className="product_actions">
-          <div className="price">${detail.price}</div>
-          <div className="cart">
-              <WavesButton type="add_to_cart_link" runAction={()=> alert('Add to cart')} />
-          </div>
+  const showProdActions = (detail) => (
+    <div className="product_actions">
+      <div className="price">${detail.price}</div>
+      <div className="cart">
+        <WavesButton
+          type="add_to_cart_link"
+          runAction={() => handleAddToCart(detail)}
+        />
       </div>
-  )
-
-  
-  const showProdSpecs = (detail)=>(
-    <div className="product_specifications">
-        <h2>Specs:</h2>
-        <div>
-            <div className="item">
-                <strong>Frets: </strong> {detail.frets}
-            </div>
-            <div className="item">
-                <strong>WoodType: </strong> {detail.woodtype}
-            </div>
-        </div>
     </div>
-)
+  );
 
-
-
-
-
+  const showProdSpecs = (detail) => (
+    <div className="product_specifications">
+      <h2>Specs:</h2>
+      <div>
+        <div className="item">
+          <strong>Frets: </strong> {detail.frets}
+        </div>
+        <div className="item">
+          <strong>WoodType: </strong> {detail.woodtype}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div>
@@ -89,6 +107,11 @@ const ProdInfo = (props) => {
       {showProdTags(detail)}
       {showProdActions(detail)}
       {showProdSpecs(detail)}
+      <AddToCartHandler
+        modal={modal}
+        errorType={errorType}
+        handleClose={handleClose}
+      />
     </div>
   );
 };

@@ -36,7 +36,9 @@
     background-image:linear-gradient(to right, #808080, #707070);
 }
 
-
+hr:not([size]) {
+    height: 2px;
+}
 
 
 /*============================
@@ -1040,10 +1042,10 @@ footer .business_nfo .nfo {
 
 .user_product_block .item .image{
     height: 125px;
+    width: 125px;
     background-size: contain !important;
     background-repeat: no-repeat !important;
     background-position: center center !important;
-    margin-right: 10px;
 }
 .user_product_block .item.btn {
     width: 0px;
@@ -1056,7 +1058,7 @@ footer .business_nfo .nfo {
     display: inline-block;
     padding: 5px 10px;
     color: #ffffff;
-    margin-top: 50px;
+    margin-top: 33px;
 }
 
 /*=============================
@@ -1128,6 +1130,12 @@ footer .business_nfo .nfo {
 
 .modal-90w button.close {
     background-color: #ffffff;
+}
+
+.modal-header .btn-close {
+    background-color: #ffffff !important;
+    padding: .5rem .5rem;
+    margin: -.5rem -.5rem -.5rem auto;
 }
 
 .modal-90w img {

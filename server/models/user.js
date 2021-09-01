@@ -74,7 +74,7 @@ userSchema.methods.generateAuthToken = function () {
 userSchema.methods.generateRegisterToken = function () {
   let user = this;
   const userObj = { sub: user._id.toHexString() };
-  const token = jwt.sign(userObj, process.env.SECRET, { expiresIn: "2h" });
+  const token = jwt.sign(userObj, process.env.SECRET, { expiresIn: "10h" });
   return token;
 };
 

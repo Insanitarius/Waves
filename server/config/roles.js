@@ -18,6 +18,7 @@ let grantObject = {
     brand: allRights,
     product: allRights,
     site: allRights,
+    transaction: allRights,
   },
   user: {
     profile: {
@@ -28,6 +29,11 @@ let grantObject = {
       "read:any": ["*"],
     },
     product: {
+      "read:any": ["*"],
+    },
+    //TODO user read own
+    transaction: {
+      "create:any": ["*"],
       "read:any": ["*"],
     },
   },

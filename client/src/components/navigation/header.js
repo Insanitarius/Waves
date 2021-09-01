@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Header = ({ user, signOutUser }) => {
-  const test = 0;
   return (
     <>
       <header className="container bck_b_light">
-        <div className="container" style={{display: "flex"}}>
+        <div className="container" style={{ display: "flex" }}>
           <div className="left">
             <div className="logo">
               <Link className="logo" to="/">
@@ -27,9 +26,11 @@ const Header = ({ user, signOutUser }) => {
                   <Link to="/dashboard/user/user_cart">
                     <div className="cart_link">
                       <span
-                        style={{ left: `${test >= 10 ? "-47px" : "-40px"}` }}
+                        style={{
+                          left: `${user.cart.length >= 10 ? "-47px" : "-40px"}`,
+                        }}
                       >
-                        {test}
+                        {user.cart.length}
                       </span>
                     </div>
                     My Cart
