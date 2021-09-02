@@ -9,8 +9,9 @@
 /coverage
 
 jsconfig.txt
+
 #Images
-/public/images
+#/public/images
 
 # production
 /build
