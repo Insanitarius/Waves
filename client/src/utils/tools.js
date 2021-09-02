@@ -92,3 +92,5 @@ export const removeTokenCookie = () =>
 export const getAuthHeader = () => {
   return { headers: { Authorization: `Bearer ${getTokenCookie()}` } };
 };
+
+export const paypalClient = process.env.REACT_APP_CLIENT_ID;

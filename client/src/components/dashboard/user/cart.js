@@ -9,6 +9,7 @@ import {
 } from "../../../store/actions/user.actions";
 
 import { PayPalButton } from "react-paypal-button-v2";
+import { paypalClient } from "../../../utils/tools";
 
 const UserCart = (props) => {
   const [loading, setLoading] = useState(false);
@@ -86,7 +87,7 @@ const UserCart = (props) => {
             <div className="pp_button" style={{ marginLeft: "10px" }}>
               <PayPalButton
                 options={{
-                  clientId: `${process.env.REACT_APP_CLIENT_ID}`,
+                  clientId: `${paypalClient}`,
                   currency: "USD",
                 }}
                 createOrder={(data, actions) => {
