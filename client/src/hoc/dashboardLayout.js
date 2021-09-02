@@ -24,7 +24,7 @@ export const admin = [
   },
   {
     name: "Manage Site",
-    linkTo: "/dashboard/user/manage_site",
+    linkTo: "/dashboard/admin/manage_site",
   },
 ];
 
@@ -52,7 +52,7 @@ const DashboardLayout = (props) => {
           ) : null}
         </div>
         <div className="user_right">
-          <div className="dashboard_title">
+          <div className="dashboard_title" key={`${props.title}`}>
             <h1>{props.title}</h1>
           </div>
           {props.children}

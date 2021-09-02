@@ -20,6 +20,7 @@ import EditProduct from "./components/dashboard/admin/products/manage/edit";
 import Shop from "./components/shop";
 import ProductDetail from "./components/product";
 import UserCart from "./components/dashboard/user/cart";
+import ManageSite from "./components/dashboard/admin/site";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -59,6 +60,11 @@ const Routes = (props) => {
               <Route
                 path="/dashboard/admin/admin_products"
                 component={AuthGuard(AdminProducts)}
+              />
+              
+              <Route
+                path="/dashboard/admin/manage_site"
+                component={AuthGuard(ManageSite)}
               />
               <Route
                 path="/dashboard/user/user_cart"

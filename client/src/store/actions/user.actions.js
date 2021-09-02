@@ -51,6 +51,8 @@ export const userSignIn = (values) => {
 export const userIsAuth = () => {
   return async (dispatch) => {
     try {
+      const site = await axios.get(`/api/site`);
+      dispatch(actions.getSiteVars(site.data));
       if (!getTokenCookie()) {
         throw new Error();
       }
@@ -148,11 +150,14 @@ export const removeFromCart = (position) => {
   };
 };
 
-
-export const userPaymentSuccess = (orderID) =>{
+export const userPaymentSuccess = (orderID) => {
   return async (dispatch) => {
     try {
-      const user = await axios.post(`/api/transaction/`,{orderID},getAuthHeader())
+      const user = await axios.post(
+        `/api/transaction/`,
+        { orderID },
+        getAuthHeader()
+      );
 
       dispatch(actions.userPaymentSuccess(user.data));
       dispatch(actions.successGlobal("Payment Successful!!"));
@@ -160,4 +165,4 @@ export const userPaymentSuccess = (orderID) =>{
       dispatch(actions.errorGlobal(error.response.data.message));
     }
   };
-}
+};

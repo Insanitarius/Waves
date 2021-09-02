@@ -10,7 +10,7 @@ const PaginateNav = ({ prods, prev, next, resetSearch }) => {
   };
 
   return (
-    <>
+    <div style={{ display: "flex", justifyContent: "center" }}>
       {prods.docs.length > 0 ? (
         <Pagination>
           {prods.hasPrevPage ? (
@@ -41,7 +41,7 @@ const PaginateNav = ({ prods, prev, next, resetSearch }) => {
           </Button>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

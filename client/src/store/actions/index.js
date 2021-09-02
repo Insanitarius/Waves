@@ -16,6 +16,8 @@ import {
   ERROR_GLOBAL,
   SUCCESS_GLOBAL,
   CLEAR_NOTIFICATIONS,
+  GET_SITE_VARS,
+  UPDATE_SITE_VARS,
 } from "../types";
 
 /////////////////////////////////User/////////////////////////////////
@@ -44,15 +46,10 @@ export const userAddToCart = (data) => ({
   payload: data,
 });
 
-
-export const userPaymentSuccess = (data)=>({
+export const userPaymentSuccess = (data) => ({
   type: PAYMENT_SUCCESS,
   payload: data,
-})
-
-
-
-
+});
 
 /////////////////////////////////Products/////////////////////////////////
 
@@ -116,3 +113,15 @@ export const clearNotifcations = () => {
     dispatch({ type: CLEAR_NOTIFICATIONS });
   };
 };
+
+/////////////////////////////////Site/////////////////////////////////
+
+export const getSiteVars = (vars) => ({
+  type: GET_SITE_VARS,
+  payload: vars,
+});
+
+export const updateSiteVars = (vars) => ({
+  type: UPDATE_SITE_VARS,
+  payload: vars,
+});

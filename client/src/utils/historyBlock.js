@@ -5,7 +5,7 @@ import Moment from "react-moment";
 const HistoryBlock = ({ history }) => {
   let sortedHistoryByDate = history.slice(0).reverse();
   return (
-    <>
+    <div style={{ marginBottom: "-0.8rem", marginLeft: "2px" }}>
       <Table striped bordered hover>
         <thead>
           <tr>
@@ -32,7 +32,7 @@ const HistoryBlock = ({ history }) => {
           ))}
         </tbody>
       </Table>
-    </>
+    </div>
   );
 };
 

@@ -45,7 +45,7 @@ const UserInfo = ({ users }) => {
             style={{ width: "100%" }}
             name="firstname"
             label="Enter your firstname"
-            // variant="outlined"
+            variant="outlined"
             {...formik.getFieldProps("firstname")}
             {...errorHelper(formik, "firstname")}
           />
@@ -55,7 +55,7 @@ const UserInfo = ({ users }) => {
             style={{ width: "100%" }}
             name="lastname"
             label="Enter your lastname"
-            // variant="outlined"
+            variant="outlined"
             {...formik.getFieldProps("lastname")}
             {...errorHelper(formik, "lastname")}
           />

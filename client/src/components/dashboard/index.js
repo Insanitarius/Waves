@@ -13,33 +13,66 @@ const Dashboard = ({ users }) => {
       <hr />
       <div className="user_nfo_panel">
         <div>
-          <span>{users.data.firstname}</span>
-          <span>{users.data.lastname}</span>
-          <span>{users.data.email}</span>
-          {/* <Button
-            disabled
-            variant="outlined"
-            color="secondary"
-            startIcon={<PersonIcon />}
-          >
-            {users.data.firstname} {users.data.lastname}
-          </Button>
-          <PersonIcon />
-          <strong> */}
-
-          {/* </strong> */}
-
-          {/* </div> */}
-          {/* <div>
-          <Button
-            disabled
-            variant="outlined"
-            color="secondary"
-            startIcon={<EmailIcon />}
-          >
-            {users.data.email}
-          </Button> */}
+          <div>
+            <PersonIcon
+              style={{
+                marginBottom: "8px",
+                marginLeft: "2px",
+                fontSize: "30px",
+              }}
+            />
+            <span
+              style={{
+                marginRight: "5px",
+                marginLeft: "8px",
+                fontSize: "20px",
+                fontWeight: "400",
+              }}
+            >
+              {users.data.firstname}
+            </span>
+            <span style={{ fontSize: "20px", fontWeight: "400" }}>
+              {users.data.lastname}
+            </span>
+          </div>
+          <div>
+            <EmailIcon
+              style={{
+                marginBottom: "8px",
+                marginLeft: "2px",
+                fontSize: "30px",
+              }}
+            />
+            <span
+              style={{
+                marginRight: "5px",
+                marginLeft: "8px",
+                fontSize: "20px",
+                fontWeight: "400",
+              }}
+            >
+              {users.data.email}
+            </span>
+            {users && users.data.verified ? null : (
+              <span>
+                <Button
+                  variant="outlined"
+                  color="secondary"
+                  startIcon={<WarningIcon />}
+                  style={{
+                    maxHeight: "30px",
+                    fontSize: "20px",
+                    marginLeft: "50px",
+                    marginBottom: "5px",
+                  }}
+                >
+                  Verify Email
+                </Button>
+              </span>
+            )}
+          </div>
         </div>
+        <hr style={{height: "1px"}} />
         {users.data.history ? (
           <div className="user_nfo_panel">
             <h1>History of purchases</h1>

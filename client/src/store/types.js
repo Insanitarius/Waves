@@ -23,3 +23,7 @@ export const PAYMENT_SUCCESS = "payment_success";
 
 /////////////////////////////////Brands/////////////////////////////////
 export const GET_ALL_BRANDS = "get_all_brands";
+
+/////////////////////////////////Brands/////////////////////////////////
+export const GET_SITE_VARS = "get_site_vars";
+export const UPDATE_SITE_VARS = "update_site_vars";
