@@ -18,7 +18,7 @@ const RegisterLogin = (props) => {
             <div className="left">
               {formType ? (
                 <>
-                  <h1>New customers</h1>
+                  <h1>New Customer</h1>
                   <p>
                     Sed ut perspiciatis unde omnis iste natus error sit
                     voluptatem accusantium doloremque laudantium, totam rem
@@ -28,7 +28,7 @@ const RegisterLogin = (props) => {
                 </>
               ) : (
                 <>
-                  <h1>Welcome back</h1>
+                  <h1>Welcome Back</h1>
                   <p>
                     Ut enim ad minima veniam, quis nostrum exercitationem ullam
                     corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
@@ -45,7 +45,7 @@ const RegisterLogin = (props) => {
                 size="small"
                 onClick={() => toogleFormType()}
               >
-                {formType ? "Already registered ?" : "Need to register"}
+                {formType ? "Already registered ?" : "Need to register ?"}
               </Button>
             </div>
             <div className="right">

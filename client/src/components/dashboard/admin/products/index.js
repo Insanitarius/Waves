@@ -11,7 +11,6 @@ import * as Yup from "yup";
 import { errorHelper } from "../../../../utils/tools";
 import { TextField, Grid, Button } from "@material-ui/core";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-// import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import CachedIcon from "@material-ui/icons/Cached";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -41,7 +40,6 @@ const AdminProducts = (props) => {
     initialValues: { keywords: "" },
     validationSchema: Yup.object({
       keywords: Yup.string()
-        // .required("Please enter something")
         .min(3, "Min 3 characters required to search")
         .max(200, "Your search is too long"),
     }),

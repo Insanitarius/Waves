@@ -18,7 +18,9 @@ export const userRegister = (values) => {
 
       dispatch(actions.userAuthenticate({ data: user.data.user, auth: true }));
       dispatch(
-        actions.successGlobal("Welcome! Check your email to verify account!")
+        actions.successGlobal(
+          "Welcome to Waves! Please check your email to verify account!"
+        )
       );
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
@@ -39,7 +41,9 @@ export const userSignIn = (values) => {
         dispatch(actions.successGlobal("Welcome back!"));
       } else {
         dispatch(
-          actions.successGlobal("Welcome to Waves! Please verify your email!")
+          actions.successGlobal(
+            "Welcome back! Don't forget to verify your email!"
+          )
         );
       }
     } catch (error) {
@@ -106,7 +110,7 @@ export const userChangeEmail = (data) => {
       dispatch(actions.userChangeEmail(data.newemail));
       dispatch(
         actions.successGlobal(
-          "Email updated successfully! Please verify your mail inorder to signin again!"
+          "Email updated successfully! Please verify your new email!"
         )
       );
     } catch (error) {
@@ -120,7 +124,7 @@ export const userAddToCart = (item) => {
     try {
       const cart = getState().users.cart;
       dispatch(actions.userAddToCart([...cart, item]));
-
+      //TODO
       // await axios.patch(
       //   `/api/users/email`,
       //   { newemail: data.newemail },
@@ -160,9 +164,53 @@ export const userPaymentSuccess = (orderID) => {
       );
 
       dispatch(actions.userPaymentSuccess(user.data));
-      dispatch(actions.successGlobal("Payment Successful!!"));
+      dispatch(actions.successGlobal("Payment Successful."));
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};
+
+export const userAccountVerify = (token) => {
+  return async (dispatch, getState) => {
+    try {
+      const verify = getState().users.data.verified;
+
+      if (!verify) {
+        await axios.get(`/api/users/verify?validation=${token}`);
+        dispatch(actions.userAccountVerify());
+        dispatch(actions.successGlobal("Account verified successfully."));
+      } else {
+        dispatch(actions.successGlobal("Account already verified!"));
+      }
+    } catch (error) {
+      if (error.response.data.message === "invalid signature")
+        dispatch(actions.errorGlobal("Incorrect authentication token."));
+      else
+        dispatch(
+          actions.errorGlobal("Token expired. Please revalidate your email.")
+        );
+    }
+  };
+};
+
+export const resendVerification = () => {
+  return async (dispatch, getState) => {
+    try {
+      const user = getState().users.data;
+      console.log(user);
+      await axios.post(
+        `/api/users/revalidate`,
+        { email: user.email },
+        getAuthHeader()
+      );
+      dispatch(
+        actions.successGlobal(
+          "Verification mail sent successfully! Please check your email."
+        )
+      );
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.messages));
     }
   };
 };

@@ -50,20 +50,20 @@ const AuthForm = (props) => {
           <form className="mt-3" onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <TextField
-                style={{ width: "85%" }}
+                style={{ width: "100%" }}
                 name="email"
                 label="Enter your email"
-                // variant="outlined"
+                variant="outlined"
                 {...formik.getFieldProps("email")}
                 {...errorHelper(formik, "email")}
               />
             </div>
             <div className="form-group mt-3 mb-2">
               <TextField
-                style={{ width: "85%" }}
+                style={{ width: "100%" }}
                 name="password"
                 label="Enter your password"
-                // variant="outlined"
+                variant="outlined"
                 type="password"
                 {...formik.getFieldProps("password")}
                 {...errorHelper(formik, "password")}

@@ -5,11 +5,11 @@ import {
   USER_CHANGE_EMAIL,
   USER_ADD_TO_CART,
   PAYMENT_SUCCESS,
+  USER_ACCOUNT_VERIFY,
 } from "../types";
 
 let DEFAULT_USER_STATE = {
   data: {
-    _id: null,
     email: null,
     firstname: null,
     lastname: null,
@@ -52,6 +52,8 @@ export default function usersReducer(state = DEFAULT_USER_STATE, action) {
         data: { ...state.data, history: action.payload.history },
         cart: [],
       };
+    case USER_ACCOUNT_VERIFY:
+      return { ...state, data: { ...state.data, verified: true } };
     default:
       return state;
   }

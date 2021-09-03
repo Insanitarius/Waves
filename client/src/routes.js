@@ -21,6 +21,7 @@ import Shop from "./components/shop";
 import ProductDetail from "./components/product";
 import UserCart from "./components/dashboard/user/cart";
 import ManageSite from "./components/dashboard/admin/site";
+import UserVerification from "./components/auth/userVerification";
 
 const Routes = (props) => {
   const [loading, setLoading] = useState(true);
@@ -61,7 +62,7 @@ const Routes = (props) => {
                 path="/dashboard/admin/admin_products"
                 component={AuthGuard(AdminProducts)}
               />
-              
+
               <Route
                 path="/dashboard/admin/manage_site"
                 component={AuthGuard(ManageSite)}
@@ -75,6 +76,7 @@ const Routes = (props) => {
                 component={AuthGuard(UserInfo)}
               />
               <Route path="/dashboard" component={AuthGuard(Dashboard)} />
+              <Route path="/verification" component={UserVerification} />
               <Route path="/product_detail/:id" component={ProductDetail} />
               <Route path="/shop" component={Shop} />
               <Route path="/sign_in" component={RegisterLogin} />

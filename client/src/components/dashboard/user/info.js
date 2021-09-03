@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DashboardLayout from "../../../hoc/dashboardLayout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -10,6 +10,7 @@ import { TextField, Button } from "@material-ui/core";
 import { userUpdateProfile } from "../../../store/actions/user.actions";
 
 const UserInfo = ({ users }) => {
+  const [toggleEdit, setToggleEdit] = useState(false);
   const dispatch = useDispatch();
   const formik = useFormik({
     enableReinitialize: true,
@@ -46,6 +47,7 @@ const UserInfo = ({ users }) => {
             name="firstname"
             label="Enter your firstname"
             variant="outlined"
+            disabled={!toggleEdit}
             {...formik.getFieldProps("firstname")}
             {...errorHelper(formik, "firstname")}
           />
@@ -56,14 +58,29 @@ const UserInfo = ({ users }) => {
             name="lastname"
             label="Enter your lastname"
             variant="outlined"
+            disabled={!toggleEdit}
             {...formik.getFieldProps("lastname")}
             {...errorHelper(formik, "lastname")}
           />
         </div>
-        <Button variant="contained" color="primary" type="submit">
-          Edit profile
-        </Button>
       </form>
+      {toggleEdit ? (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={formik.handleSubmit}
+        >
+          Update Profile
+        </Button>
+      ) : (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => setToggleEdit(!toggleEdit)}
+        >
+          Edit profile?
+        </Button>
+      )}
       <hr style={{ height: "1px" }} />
       <div>
         <EmailStepper users={users} />

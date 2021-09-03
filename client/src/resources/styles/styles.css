@@ -176,7 +176,7 @@ tr:nth-child(even) {
     width: 200px;
     height: 200px;
     background-size: cover !important;
-    display:inline-block
+    display:inline-block;
 }
 
 input {
@@ -964,7 +964,7 @@ footer .business_nfo .nfo {
 
 .register_login_container p{
     font-weight: 300;
-    font-size: 16px;
+    /* font-size: 16px; */
     width: 90%;
 }
 

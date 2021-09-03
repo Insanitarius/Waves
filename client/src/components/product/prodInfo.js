@@ -41,7 +41,7 @@ const ProdInfo = (props) => {
           {detail.shipping ? (
             <div> Free shipping in India Only </div>
           ) : (
-            <div> No shipping for this product </div>
+            <div> No Free shipping for this product </div>
           )}
         </div>
       </div>

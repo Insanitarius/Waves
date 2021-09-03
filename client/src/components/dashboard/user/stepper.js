@@ -93,12 +93,12 @@ const EmailStepper = ({ users }) => {
           />
         </div>
         <Button variant="contained" color="primary" onClick={openModal}>
-          Edit email
+          Change email?
         </Button>
       </form>
       <Modal size="lg" centered show={emailModal} onHide={closeModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Update your email</Modal.Title>
+          <Modal.Title>Update User Email</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
@@ -125,7 +125,7 @@ const EmailStepper = ({ users }) => {
                     style={{ width: "100%" }}
                     name="email"
                     label="Enter your current email"
-                    //   variant="filled"
+                      variant="outlined"
                     {...formik.getFieldProps("email")}
                     {...errorHelper(formik, "email")}
                   />
@@ -150,7 +150,7 @@ const EmailStepper = ({ users }) => {
                     style={{ width: "100%" }}
                     name="newemail"
                     label="Enter your new email"
-                    //   variant="filled"
+                      variant="outlined"
                     {...formik.getFieldProps("newemail")}
                     {...errorHelper(formik, "newemail")}
                   />

@@ -1,41 +1,40 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { renderCardImage, WavesButton } from "../tools";
-import { useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import AddToCartHandler from "../addToCartHandler";
 import { userAddToCart } from "../../store/actions/user.actions";
 
 const Card = (props) => {
-  const [modal,setModal] = useState(false)
-  const [errorType, setErrorType] = useState(null)
-  const user = useSelector(state=>state.users)
-  const dispatch = useDispatch()
+  const [modal, setModal] = useState(false);
+  const [errorType, setErrorType] = useState(null);
+  const user = useSelector((state) => state.users);
+  const dispatch = useDispatch();
 
-  const handleClose = ()=> setModal(false)
+  const handleClose = () => setModal(false);
 
   const handleAddToCart = (item) => {
-    if(!user.auth){
-      setModal(true)
-      setErrorType('auth')
-      return false
+    if (!user.auth) {
+      setModal(true);
+      setErrorType("auth");
+      return false;
     }
-    if(!user.data.verified){
-      setModal(true)
-      setErrorType('verify')
-      return false
+    if (!user.data.verified) {
+      setModal(true);
+      setErrorType("verify");
+      return false;
     }
-    dispatch(userAddToCart(item))
+    dispatch(userAddToCart(item));
   };
 
   return (
     <div className={`card_item_wrapper ${props.grid ? "grid_bars" : ""}`}>
-      <div
-        className="image"
-        style={{
-          background: `url(${renderCardImage(props.item.images)})`,
-          height: "278px",
-          width: "211px",
-        }}
-      ></div>
+      <img
+        alt={props.item.model}
+        src={renderCardImage(props.item.images)}
+        width="211px"
+        height="278px"
+        style={{ imageRendering: "-webkit-optimize-contrast" }}
+      ></img>
       <div className="action_container">
         <div className="tags">
           <div className="brand">{props.item.brand.name}</div>
@@ -68,7 +67,11 @@ const Card = (props) => {
           </div>
         </div>
       </div>
-      <AddToCartHandler modal={modal} errorType={errorType} handleClose={handleClose} />
+      <AddToCartHandler
+        modal={modal}
+        errorType={errorType}
+        handleClose={handleClose}
+      />
     </div>
   );
 };

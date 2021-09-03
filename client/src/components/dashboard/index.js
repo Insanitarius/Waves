@@ -6,8 +6,11 @@ import PersonIcon from "@material-ui/icons/Person";
 import EmailIcon from "@material-ui/icons/Email";
 import Button from "@material-ui/core/Button";
 import WarningIcon from "@material-ui/icons/Warning";
+import { useDispatch } from "react-redux";
+import { resendVerification } from "../../store/actions/user.actions";
 
 const Dashboard = ({ users }) => {
+  const dispatch = useDispatch();
   return (
     <DashboardLayout title="Overview">
       <hr />
@@ -65,6 +68,9 @@ const Dashboard = ({ users }) => {
                     marginLeft: "50px",
                     marginBottom: "5px",
                   }}
+                  onClick={() => {
+                    dispatch(resendVerification());
+                  }}
                 >
                   Verify Email
                 </Button>
@@ -72,13 +78,27 @@ const Dashboard = ({ users }) => {
             )}
           </div>
         </div>
-        <hr style={{height: "1px"}} />
+        <hr style={{ height: "1px" }} />
         {users.data.history ? (
           <div className="user_nfo_panel">
             <h1>History of purchases</h1>
-            <div className="user_product_block">
-              <HistoryBlock history={users.data.history} />
-            </div>
+            {users.data.history.length > 0 ? (
+              <div
+                className="user_product_block"
+                style={{ display: "flow-root" }}
+              >
+                <HistoryBlock history={users.data.history} />
+              </div>
+            ) : (
+              <div
+                className="user_product_block"
+                style={{ justifyContent: "center" }}
+              >
+                <h5 style={{ color: "rgb(104, 104, 104)", fontSize: "18px" }}>
+                  You have not made any purchases.
+                </h5>
+              </div>
+            )}
           </div>
         ) : null}
       </div>

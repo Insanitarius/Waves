@@ -118,6 +118,7 @@ const EditProduct = (props) => {
                 type="number"
                 label="Enter the amount of frets"
                 variant="outlined"
+                onWheel={(e) => e.target.blur()}
                 {...formik.getFieldProps("frets")}
                 {...errorHelper(formik, "frets")}
               />
@@ -183,6 +184,7 @@ const EditProduct = (props) => {
                 type="number"
                 label="Enter the price"
                 variant="outlined"
+                onWheel={(e) => e.target.blur()}
                 {...formik.getFieldProps("price")}
                 {...errorHelper(formik, "price")}
               />
@@ -196,6 +198,7 @@ const EditProduct = (props) => {
                 type="number"
                 label="How many are there in stock?"
                 variant="outlined"
+                onWheel={(e) => e.target.blur()}
                 {...formik.getFieldProps("available")}
                 {...errorHelper(formik, "available")}
               />

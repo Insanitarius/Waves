@@ -19,10 +19,10 @@ import {
 function RangeSelector(props) {
   const [open, setOpen] = useState(props.initState);
   const formik = useFormik({
-    initialValues: { min: 0, max: 10000 },
+    initialValues: { min: 0, max: 5000 },
     validationSchema: Yup.object({
       min: Yup.number().min(0, "The mininum is 0"),
-      max: Yup.number().max(10000, "The mininum is 10000"),
+      max: Yup.number().max(5000, "The mininum is 10000"),
     }),
     onSubmit: (values) => {
       props.handleRange([values.min, values.max]);
@@ -52,6 +52,7 @@ function RangeSelector(props) {
                   type="number"
                   label="Enter minimum price"
                   variant="outlined"
+                  onWheel={(e) => e.target.blur()}
                   {...formik.getFieldProps("min")}
                   {...errorHelper(formik, "min")}
                 />
@@ -67,6 +68,7 @@ function RangeSelector(props) {
                   type="number"
                   label="Enter maximum price"
                   variant="outlined"
+                  onWheel={(e) => e.target.blur()}
                   {...formik.getFieldProps("max")}
                   {...errorHelper(formik, "max")}
                 />

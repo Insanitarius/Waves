@@ -96,6 +96,8 @@ const UserCart = (props) => {
                   });
                 }}
                 onSuccess={(details, data) => {
+                  //TODO
+
                   dispatch(userPaymentSuccess(details.id));
                   setLoading(true);
                 }}

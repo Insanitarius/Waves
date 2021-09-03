@@ -18,7 +18,7 @@ const ProductDetail = (props) => {
 
   const sliderSettings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -44,14 +44,14 @@ const ProductDetail = (props) => {
 
   return (
     <div className="page_container">
-      {/* TODO: Looks ugly remove page_top  */}
       <div className="page_top">
-        <div className="container">PRODUCT DETAIL</div>
+        <div className="container">
+          <h6 className="mt-2">PRODUCT DETAILS</h6>
+        </div>
       </div>
       <div className="container">
         {products && products.byId ? (
           <div className="product_detail_wrapper">
-            {/*  style={{ width: "300px", height: "400px" }} */}
             <div className="left">
               <img
                 alt={products.byId.model}
@@ -59,6 +59,8 @@ const ProductDetail = (props) => {
                 onClick={() => handleCarousel()}
                 width="300px"
                 height="400px"
+                className="image"
+                style={{ imageRendering: "-webkit-optimize-contrast" }}
               ></img>
             </div>
             <div className="right" style={{ marginLeft: "20px" }}>
@@ -75,19 +77,15 @@ const ProductDetail = (props) => {
           <Slider {...sliderSettings}>
             {products.byId && products.byId.images
               ? products.byId.images.map((item) => (
-                  <div key={item} style={{ margin: "0 auto" }}>
-                    {/* <div
-                      className="img-block"
-                      style={{
-                        background: `url(${item}) no-repeat`,
-                      }}
-                    ></div> */}
+                  <div key={item} style={{ margin: "0 auto", width: "1185px" }}>
                     <img
                       alt={products.byId.model}
                       src={item}
-                      onClick={() => handleCarousel()}
-                      max-width="1366px"
-                      max-height="350px"
+                      height={`${window.innerHeight}px`}
+                      className="image"
+                      style={{
+                        imageRendering: "-webkit-optimize-contrast",
+                      }}
                     ></img>
                   </div>
                 ))

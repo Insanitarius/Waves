@@ -14,5 +14,6 @@ router.patch(
   usersController.updateUserEmail
 );
 router.get("/verify", usersController.verifyAccount);
+router.post("/revalidate", auth("readOwn", "profile"), usersController.revalidateEmail);
 
 module.exports = router;

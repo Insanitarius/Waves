@@ -35,9 +35,9 @@ const PaginateNav = ({ prods, prev, next, resetSearch }) => {
         </Pagination>
       ) : (
         <div>
-          <div>Nothing was found</div>
-          <Button className="mt-3" variant="primary" onClick={resetSearch}>
-            OWO
+          <h5>No items found</h5>
+          <Button className="mt-3" variant="danger" onClick={resetSearch}>
+            Reset Search
           </Button>
         </div>
       )}

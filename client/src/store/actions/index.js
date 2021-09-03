@@ -5,6 +5,7 @@ import {
   USER_CHANGE_EMAIL,
   USER_ADD_TO_CART,
   PAYMENT_SUCCESS,
+  USER_ACCOUNT_VERIFY,
   GET_PROD_BY_SOLD,
   GET_PROD_BY_DATE,
   GET_PROD_PAGINATE,
@@ -49,6 +50,10 @@ export const userAddToCart = (data) => ({
 export const userPaymentSuccess = (data) => ({
   type: PAYMENT_SUCCESS,
   payload: data,
+});
+
+export const userAccountVerify = () => ({
+  type: USER_ACCOUNT_VERIFY,
 });
 
 /////////////////////////////////Products/////////////////////////////////

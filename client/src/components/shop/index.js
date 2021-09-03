@@ -38,7 +38,7 @@ const Shop = () => {
 
   const handleResetSearch = () => {
     //BUG Checked boxes not getting selected when you do reset search
-    setSearchValues({ keywords: "", page: 1 });
+    setSearchValues(defaultValues);
     // setSearchValues(defaultValues);
   };
 

@@ -9,7 +9,6 @@ const usersController = {
       if (!user) {
         throw new ApiError(httpStatus.NOT_FOUND, "User not found");
       }
-
       res.json(res.locals.permission.filter(user._doc));
     } catch (error) {
       next(error);
@@ -18,7 +17,6 @@ const usersController = {
   async updateProfile(req, res, next) {
     try {
       const user = await userService.updateUserProfile(req);
-
       res.json(res.locals.permission.filter(user._doc));
     } catch (error) {
       next(error);
@@ -26,35 +24,60 @@ const usersController = {
   },
   async updateUserEmail(req, res, next) {
     try {
-      const user = await userService.updateUserEmail(req);
-      const token = await authService.genAuthToken(user);
+      const users = await userService.updateUserEmail(req);
+      const token = await authService.genAuthToken(users);
 
-      await emailService.verificationEmail(user.email,user)
-
-      res.cookie("x-access-token", token).send({ user, token });
+      await emailService.verificationEmail(users.email, users);
+      const user = getUserProps(users);
+      res.cookie("x-access-token", token).send({ user });
     } catch (error) {
       next(error);
     }
   },
   async verifyAccount(req, res, next) {
     try {
-      //FIXME !validation? verification
       const token = await userService.validateToken(req.query.validation);
-      const user = await userService.findUserById(token.sub);
+      const users = await userService.findUserById(token.sub);
 
-      if (!user) throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+      if (!users) throw new ApiError(httpStatus.NOT_FOUND, "User not found");
 
-      if (user.verified)
+      if (users.verified)
         throw new ApiError(httpStatus.BAD_REQUEST, "Already verified!");
 
-      user.verified = true;
-      user.save();
-
+      users.verified = true;
+      users.save();
+      const user = getUserProps(users);
       res.status(httpStatus.CREATED).send({ user });
     } catch (error) {
       next(error);
     }
   },
+  async revalidateEmail(req, res, next) {
+    try {
+      const users = await userService.findUserByEmail(req.body.email);
+      if (!users) throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+      if (users.verified)
+        throw new ApiError(httpStatus.BAD_REQUEST, "Already verified!");
+
+      await emailService.verificationEmail(users.email, users);
+      const user = getUserProps(users);
+      res.status(httpStatus.ACCEPTED).send({ user });
+    } catch (error) {
+      next(error);
+    }
+  },
+};
+
+const getUserProps = (user) => {
+  return {
+    email: user.email,
+    firstname: user.firstname,
+    lastname: user.lastname,
+    history: user.history,
+    role: user.role,
+    verified: user.verified,
+    cart: user.cart,
+  };
 };
 
 module.exports = usersController;
