@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { errorHelper } from "../../utils/tools";
@@ -21,18 +21,29 @@ function RangeSelector(props) {
   const formik = useFormik({
     initialValues: { min: 0, max: 5000 },
     validationSchema: Yup.object({
-      min: Yup.number().min(0, "The mininum is 0"),
-      max: Yup.number().max(5000, "The mininum is 10000"),
+      min: Yup.number()
+        .min(0, "The mininum is 0")
+        .max(5000, "The maximum is 5000"),
+      max: Yup.number()
+        .min(0, "The mininum is 0")
+        .max(5000, "The maximum is 5000"),
     }),
     onSubmit: (values) => {
       props.handleRange([values.min, values.max]);
     },
   });
 
+  useEffect(() => {
+    if (props.resetAll) {
+      formik.handleReset();
+      props.handleResetAll();
+    }
+  }, [formik, props]);
+
   const handleCollapseOpen = () => setOpen(!open);
 
   return (
-    <div className="collapse_items_wrapper">
+    <div className="collapse_items_wrapper" style={{ cursor: "pointer" }}>
       <List>
         <ListItem onClick={handleCollapseOpen}>
           <ListItemText primary={props.title} className="collapse_title" />

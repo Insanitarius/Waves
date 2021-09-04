@@ -94,3 +94,18 @@ export const updateProduct = (values, id) => {
     }
   };
 };
+
+export const deleteProductImage = (ID) => {
+  return async (dispatch) => {
+    try {
+      await axios.post(
+        `/api/products/delete/`,
+        { publicID: ID },
+        getAuthHeader()
+      );
+      dispatch(actions.successGlobal("Image deleted successfully!"));
+    } catch (error) {
+      dispatch(actions.errorGlobal(error.response.data.message));
+    }
+  };
+};

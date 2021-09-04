@@ -22,6 +22,7 @@ const defaultValues = {
 
 const Shop = () => {
   const [grid, setGrid] = useState(false);
+  const [resetAll, setResetAll] = useState(false);
   const [searchValues, setSearchValues] = useReducer(
     (state, newState) => ({ ...state, ...newState }),
     defaultValues
@@ -37,9 +38,8 @@ const Shop = () => {
   };
 
   const handleResetSearch = () => {
-    //BUG Checked boxes not getting selected when you do reset search
     setSearchValues(defaultValues);
-    // setSearchValues(defaultValues);
+    setResetAll(true);
   };
 
   const handleKeywords = (values) => {
@@ -88,6 +88,8 @@ const Shop = () => {
               title="Brands"
               list={brands.all}
               handleFilters={(filters) => handleFilters(filters, "brands")}
+              resetAll={resetAll}
+              handleResetAll={() => setResetAll(!resetAll)}
             />
             <CollapseCheckbox
               initState={false}
@@ -99,11 +101,15 @@ const Shop = () => {
                 { _id: 24, name: 24 },
               ]}
               handleFilters={(filters) => handleFilters(filters, "frets")}
+              resetAll={resetAll}
+              handleResetAll={() => setResetAll(!resetAll)}
             />
             <RangeSelector
               initState={false}
               title="Price Range"
               handleRange={(values) => handleRange(values)}
+              resetAll={resetAll}
+              handleResetAll={() => setResetAll(!resetAll)}
             />
           </div>
           <div className="right">

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
@@ -47,8 +47,15 @@ function CollapseCheckbox(props) {
     props.handleFilters(newChecked);
   };
 
+  useEffect(() => {
+    if (props.resetAll) {
+      setChecked([]);
+      props.handleResetAll();
+    }
+  }, [props]);
+
   return (
-    <div className="collapse_items_wrapper">
+    <div className="collapse_items_wrapper" style={{ cursor: "pointer" }}>
       <List>
         <ListItem onClick={handleCollapseOpen}>
           <ListItemText primary={props.title} className="collapse_title" />

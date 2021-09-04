@@ -62,7 +62,6 @@ const ProductsTable = ({
               ))}
             </tbody>
           </Table>
-          {/* BUG : Check if pagination looks better at center or left*/}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Pagination>
               {prods.hasPrevPage ? (

@@ -29,7 +29,6 @@ const AddToCartHandler = ({ modal, handleClose, errorType }) => {
               <Button variant="primary">Register/SignIn</Button>
             </LinkContainer>
           ) : (
-            //TODO: Send verification again
             <LinkContainer to="/dashboard">
               <Button
                 variant="primary"

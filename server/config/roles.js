@@ -31,10 +31,9 @@ let grantObject = {
     product: {
       "read:any": ["*"],
     },
-    //TODO user read own
     transaction: {
       "create:any": ["*"],
-      "read:any": ["*"],
+      "read:own": ["*"],
     },
   },
 };

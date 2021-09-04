@@ -14,6 +14,22 @@ router.patch(
   usersController.updateUserEmail
 );
 router.get("/verify", usersController.verifyAccount);
-router.post("/revalidate", auth("readOwn", "profile"), usersController.revalidateEmail);
+router.post(
+  "/revalidate",
+  auth("readOwn", "profile"),
+  usersController.revalidateEmail
+);
+
+router.post(
+  "/addtocart",
+  auth("updateOwn", "profile"),
+  usersController.addToCart
+);
+
+router.post(
+  "/removefromcart",
+  auth("deleteOwn", "profile"),
+  usersController.removeFromCart
+);
 
 module.exports = router;

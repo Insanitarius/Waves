@@ -16,13 +16,13 @@ const UserCart = (props) => {
   const notifications = useSelector((state) => state.notifications);
   const dispatch = useDispatch();
 
-  const removeItem = (position) => {
-    dispatch(removeFromCart(position));
+  const removeItem = (model) => {
+    dispatch(removeFromCart(model));
   };
 
   const calculateTotal = () => {
     let total = 0;
-    props.users.cart.forEach((item) => {
+    props.users.data.cart.forEach((item) => {
       total += parseInt(item.price);
     });
     return total;
@@ -46,7 +46,7 @@ const UserCart = (props) => {
   ];
 
   const generateItems = () => {
-    let items = props.users.cart.map((item) => ({
+    let items = props.users.data.cart.map((item) => ({
       unit_amount: {
         currency_code: "USD",
         value: item.price,
@@ -59,7 +59,8 @@ const UserCart = (props) => {
 
   useEffect(() => {
     if (notifications && notifications.success) {
-      props.history.push("/dashboard");
+      if (notifications.msg === "Payment Successful!")
+        props.history.push("/dashboard");
     }
     if (notifications && notifications.success) {
       setLoading(false);
@@ -68,12 +69,12 @@ const UserCart = (props) => {
 
   return (
     <DashboardLayout title="Shopping Cart">
-      {props.users.cart && props.users.cart.length > 0 ? (
+      {props.users.data.cart && props.users.data.cart.length > 0 ? (
         <>
           <hr />
           <CartDetail
-            products={props.users.cart}
-            removeItem={(position) => removeItem(position)}
+            products={props.users.data.cart}
+            removeItem={(model) => removeItem(model)}
           />
           <div className="user_cart_sum">
             <div>
@@ -84,7 +85,7 @@ const UserCart = (props) => {
           {loading ? (
             <Loader />
           ) : (
-            <div className="pp_button" style={{ marginLeft: "10px" }}>
+            <div className="pp_button">
               <PayPalButton
                 options={{
                   clientId: `${paypalClient}`,
@@ -96,8 +97,6 @@ const UserCart = (props) => {
                   });
                 }}
                 onSuccess={(details, data) => {
-                  //TODO
-
                   dispatch(userPaymentSuccess(details.id));
                   setLoading(true);
                 }}

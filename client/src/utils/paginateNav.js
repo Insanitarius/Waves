@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Pagination, Button } from "react-bootstrap";
+import Loader from "./loader";
 
 const PaginateNav = ({ prods, prev, next, resetSearch }) => {
+  const [loading, setLoading] = useState(false);
+
   const goToPrevPage = (page) => {
     prev(page);
   };
@@ -35,10 +38,24 @@ const PaginateNav = ({ prods, prev, next, resetSearch }) => {
         </Pagination>
       ) : (
         <div>
-          <h5>No items found</h5>
-          <Button className="mt-3" variant="danger" onClick={resetSearch}>
-            Reset Search
-          </Button>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div>
+              <h5>No items found</h5>
+              <Button
+                className="mt-3"
+                variant="danger"
+                onClick={() => {
+                  resetSearch();
+                  setLoading(true);
+                  setTimeout(() => setLoading(false), 1000);
+                }}
+              >
+                Reset Search
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </div>

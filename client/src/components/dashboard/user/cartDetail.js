@@ -4,7 +4,7 @@ import { renderCardImage } from "../../../utils/tools";
 const CartDetail = ({ products, removeItem }) => {
   const renderItems = () =>
     products
-      ? products.map((product, index) => (
+      ? products.map((product) => (
           <div className="user_product_block" key={`${product._id}`}>
             <div className="item">
               <div className="image">
@@ -46,7 +46,7 @@ const CartDetail = ({ products, removeItem }) => {
               <div
                 className="cart_remove_btn"
                 style={{ marginBottom: "25px" }}
-                onClick={() => removeItem(index)}
+                onClick={() => removeItem(product.model)}
               >
                 Remove
               </div>

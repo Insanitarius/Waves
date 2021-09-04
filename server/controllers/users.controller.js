@@ -66,6 +66,30 @@ const usersController = {
       next(error);
     }
   },
+  async addToCart(req, res, next) {
+    try {
+      const users = await userService.findUserByEmail(req.user.email);
+      if (!users) throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+
+      const cart = await userService.addToCart(req);
+
+      res.status(httpStatus.ACCEPTED).json(cart);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async removeFromCart(req, res, next) {
+    try {
+      const users = await userService.findUserByEmail(req.user.email);
+      if (!users) throw new ApiError(httpStatus.NOT_FOUND, "User not found");
+
+      const cart = await userService.removeFromCart(req);
+
+      res.status(httpStatus.ACCEPTED).json(cart);
+    } catch (error) {
+      next(error);
+    }
+  },
 };
 
 const getUserProps = (user) => {

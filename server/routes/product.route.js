@@ -30,4 +30,11 @@ router.post(
   productsController.picUpload
 );
 
+/////Deleting images
+router.post(
+  "/delete",
+  auth("deleteAny", "product"),
+  productsController.picDelete
+);
+
 module.exports = router;

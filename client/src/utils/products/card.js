@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { renderCardImage, WavesButton } from "../tools";
+import { renderCardImage, showToast, WavesButton } from "../tools";
 import { useSelector, useDispatch } from "react-redux";
 import AddToCartHandler from "../addToCartHandler";
 import { userAddToCart } from "../../store/actions/user.actions";
@@ -23,7 +23,11 @@ const Card = (props) => {
       setErrorType("verify");
       return false;
     }
-    dispatch(userAddToCart(item));
+    if (item.available !== 0) {
+      dispatch(userAddToCart(item));
+    } else {
+      showToast("ERROR", `${item.model} is out of stock!`);
+    }
   };
 
   return (

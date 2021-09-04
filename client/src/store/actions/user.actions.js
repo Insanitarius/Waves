@@ -110,7 +110,7 @@ export const userChangeEmail = (data) => {
       dispatch(actions.userChangeEmail(data.newemail));
       dispatch(
         actions.successGlobal(
-          "Email updated successfully! Please verify your new email!"
+          "Email updated successfully. Please verify your new email!"
         )
       );
     } catch (error) {
@@ -120,18 +120,15 @@ export const userChangeEmail = (data) => {
 };
 
 export const userAddToCart = (item) => {
-  return async (dispatch, getState) => {
+  return async (dispatch) => {
     try {
-      const cart = getState().users.cart;
-      dispatch(actions.userAddToCart([...cart, item]));
-      //TODO
-      // await axios.patch(
-      //   `/api/users/email`,
-      //   { newemail: data.newemail },
-      //   getAuthHeader()
-      // );
-
-      // dispatch(actions.userChangeEmail(data.newemail));
+      const cart = await axios.post(
+        `/api/users/addtocart`,
+        { model: `${item.model}` },
+        getAuthHeader()
+      );
+      console.log(cart);
+      dispatch(actions.userUpdateCart(cart.data));
       dispatch(actions.successGlobal(`${item.model} added to cart!`));
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
@@ -139,14 +136,15 @@ export const userAddToCart = (item) => {
   };
 };
 
-export const removeFromCart = (position) => {
-  return async (dispatch, getState) => {
+export const removeFromCart = (model) => {
+  return async (dispatch) => {
     try {
-      const cart = getState().users.cart;
-      const model = cart[position].model;
-      cart.splice(position, 1);
-
-      dispatch(actions.userAddToCart(cart));
+      const cart = await axios.post(
+        `/api/users/removefromcart`,
+        { model: model },
+        getAuthHeader()
+      );
+      dispatch(actions.userUpdateCart(cart.data));
       dispatch(actions.successGlobal(`${model} removed from cart!`));
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
@@ -164,7 +162,7 @@ export const userPaymentSuccess = (orderID) => {
       );
 
       dispatch(actions.userPaymentSuccess(user.data));
-      dispatch(actions.successGlobal("Payment Successful."));
+      dispatch(actions.successGlobal("Payment Successful!"));
     } catch (error) {
       dispatch(actions.errorGlobal(error.response.data.message));
     }
@@ -179,7 +177,7 @@ export const userAccountVerify = (token) => {
       if (!verify) {
         await axios.get(`/api/users/verify?validation=${token}`);
         dispatch(actions.userAccountVerify());
-        dispatch(actions.successGlobal("Account verified successfully."));
+        dispatch(actions.successGlobal("Account verified successfully!"));
       } else {
         dispatch(actions.successGlobal("Account already verified!"));
       }
@@ -188,7 +186,7 @@ export const userAccountVerify = (token) => {
         dispatch(actions.errorGlobal("Incorrect authentication token."));
       else
         dispatch(
-          actions.errorGlobal("Token expired. Please revalidate your email.")
+          actions.errorGlobal("Token expired. Please revalidate your email!")
         );
     }
   };
@@ -206,7 +204,7 @@ export const resendVerification = () => {
       );
       dispatch(
         actions.successGlobal(
-          "Verification mail sent successfully! Please check your email."
+          "Verification mail sent successfully. Please check your email!"
         )
       );
     } catch (error) {

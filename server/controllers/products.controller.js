@@ -1,5 +1,3 @@
-//FIXME: remove api error
-const { ApiError } = require("../middleware/apiError");
 const { productsService } = require("../services");
 
 const productsController = {
@@ -58,6 +56,14 @@ const productsController = {
     try {
       const pic = await productsService.picUpload(req);
       res.json(pic);
+    } catch (error) {
+      next(error);
+    }
+  },
+  async picDelete(req, res, next) {
+    try {
+      await productsService.picDelete(req.body);
+      res.status(200).json("Deleted successfully!");
     } catch (error) {
       next(error);
     }

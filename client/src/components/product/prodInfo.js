@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { WavesButton } from "../../utils/tools";
+import { showToast, WavesButton } from "../../utils/tools";
 import { useSelector, useDispatch } from "react-redux";
 import AddToCartHandler from "../../utils/addToCartHandler";
 import { userAddToCart } from "../../store/actions/user.actions";
@@ -28,7 +28,11 @@ const ProdInfo = (props) => {
       setErrorType("verify");
       return false;
     }
-    dispatch(userAddToCart(item));
+    if (item.available !== 0) {
+      dispatch(userAddToCart(item));
+    } else {
+      showToast("ERROR", `${item.model} is out of stock!`);
+    }
   };
 
   const showProdTags = (detail) => (
@@ -97,12 +101,10 @@ const ProdInfo = (props) => {
 
   return (
     <div>
-      {/* FIXME */}
       <h1 style={{ color: "#2196F3", display: "inline" }}>
         {detail.brand.name}{" "}
       </h1>
       <h1 style={{ display: "inline" }}>{detail.model}</h1>
-      {/* TILL HERE */}
       <p>{detail.description}</p>
       {showProdTags(detail)}
       {showProdActions(detail)}

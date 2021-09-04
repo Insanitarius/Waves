@@ -25,7 +25,6 @@ const addProduct = async (body) => {
 
 const getProductById = async (_id) => {
   try {
-    //FIXME check _id  -> {_id}
     const product = await Product.findById(_id).populate("brand");
     if (!product) throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
     return product;
@@ -125,7 +124,6 @@ const paginateProducts = async (req) => {
     let aggQuery = Product.aggregate(aggQueryArray);
     const options = {
       page: req.body.page,
-      //TODO: add a way to manage limit from front end
       limit: 6,
       sort: { date: "desc" },
     };
@@ -154,6 +152,19 @@ const picUpload = async (req) => {
   }
 };
 
+const picDelete = async ({ publicID }) => {
+  try {
+    const deletion = await cloudinary.uploader.destroy(publicID);
+    if (deletion.result === "ok") {
+      return;
+    } else {
+      throw error;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   addProduct,
   getProductById,
@@ -162,4 +173,5 @@ module.exports = {
   allProducts,
   paginateProducts,
   picUpload,
+  picDelete,
 };

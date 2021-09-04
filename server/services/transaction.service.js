@@ -1,5 +1,6 @@
 const { Transaction } = require("../models/transaction");
 const { User } = require("../models/user");
+const { Product } = require("../models/product");
 
 const payPalClient = require("../utils/paypalClient");
 const checkoutNodeJssdk = require("@paypal/checkout-server-sdk");
@@ -19,6 +20,7 @@ const addTransaction = async (req) => {
 
     await transaction.save();
 
+    //Adding to user history
     const user = await User.findOneAndUpdate(
       { _id: req.user._id },
       {
@@ -36,6 +38,9 @@ const addTransaction = async (req) => {
       },
       { new: true }
     );
+
+    user.cart = [];
+    user.save();
     return user;
   } catch (error) {
     throw error;

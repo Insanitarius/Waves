@@ -18,24 +18,20 @@ const Header = ({ user, signOutUser }) => {
             <div className="top">
               {user.auth ? (
                 <>
-                  {/* <div className="cart_link">
-                    <span>1</span>
-                    <Link to="/dashboard/user/user_cart">My Cart</Link>
-                  </div> */}
-                  {/* XXX */}
                   <Link to="/dashboard/user/user_cart">
                     <div className="cart_link">
                       <span
                         style={{
-                          left: `${user.cart.length >= 10 ? "-47px" : "-40px"}`,
+                          left: `${
+                            user.data.cart.length >= 10 ? "-47px" : "-40px"
+                          }`,
                         }}
                       >
-                        {user.cart.length}
+                        {user.data.cart.length}
                       </span>
                     </div>
                     My Cart
                   </Link>
-                  {/* XXX*/}
                   <Link to="/dashboard">My Account</Link>
                   <span onClick={() => signOutUser()}> Log out</span>
                 </>

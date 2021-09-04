@@ -9,7 +9,7 @@ const authController = {
       const users = await authService.createUser(email, password);
       const token = await authService.genAuthToken(users);
 
-      ///HACK Sending email for verification
+      ///Sending email for verification
       await emailService.registerEmail(email, users);
 
       const user = getUserProps(users);

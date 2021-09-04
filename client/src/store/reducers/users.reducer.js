@@ -3,7 +3,7 @@ import {
   SIGN_OUT,
   UPDATE_USER_PROFILE,
   USER_CHANGE_EMAIL,
-  USER_ADD_TO_CART,
+  USER_UPDATE_CART,
   PAYMENT_SUCCESS,
   USER_ACCOUNT_VERIFY,
 } from "../types";
@@ -17,7 +17,6 @@ let DEFAULT_USER_STATE = {
     verified: null,
   },
   auth: null,
-  cart: [],
 };
 
 export default function usersReducer(state = DEFAULT_USER_STATE, action) {
@@ -44,13 +43,12 @@ export default function usersReducer(state = DEFAULT_USER_STATE, action) {
         ...state,
         data: { ...state.data, email: action.payload },
       };
-    case USER_ADD_TO_CART:
-      return { ...state, cart: action.payload };
+    case USER_UPDATE_CART:
+      return { ...state, data: { ...state.data, cart: action.payload } };
     case PAYMENT_SUCCESS:
       return {
         ...state,
-        data: { ...state.data, history: action.payload.history },
-        cart: [],
+        data: { ...state.data, history: action.payload.history, cart: [] },
       };
     case USER_ACCOUNT_VERIFY:
       return { ...state, data: { ...state.data, verified: true } };

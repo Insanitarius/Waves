@@ -3,7 +3,7 @@ import {
   SIGN_OUT,
   UPDATE_USER_PROFILE,
   USER_CHANGE_EMAIL,
-  USER_ADD_TO_CART,
+  USER_UPDATE_CART,
   PAYMENT_SUCCESS,
   USER_ACCOUNT_VERIFY,
   GET_PROD_BY_SOLD,
@@ -42,8 +42,8 @@ export const userChangeEmail = (data) => ({
   payload: data,
 });
 
-export const userAddToCart = (data) => ({
-  type: USER_ADD_TO_CART,
+export const userUpdateCart = (data) => ({
+  type: USER_UPDATE_CART,
   payload: data,
 });
 

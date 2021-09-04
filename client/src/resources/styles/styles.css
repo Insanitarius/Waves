@@ -95,7 +95,6 @@ a {
 .bck_b_light {
     background: #272723;
     min-width: 100vw;
-    /* FIXME */
     /* overflow: auto; */
 }
 
@@ -359,7 +358,6 @@ select {
             HEADER
 ==============================*/
 header {
-    /* FIXME */
     z-index: 1000;
     top: 0;
     position: sticky;
@@ -650,7 +648,6 @@ footer .business_nfo .nfo {
     font-size: 21px;
     font-weight: 700;
     overflow: hidden;
-    /* HACK */
     text-overflow: ellipsis;
     white-space: nowrap;
     @supports (-webkit-line-clamp: 2) {
@@ -695,7 +692,6 @@ footer .business_nfo .nfo {
 
 .card_item_wrapper.grid_bars .action_container {
     flex-grow: 1;
-    /* HACK */
     height: 276;
     width: 507px;
     border: 1px solid #e6e6e6;
@@ -705,10 +701,7 @@ footer .business_nfo .nfo {
     clear:both;
     padding: 0px 25px;
     border-top: 1px solid #eeeeee;
-
-    /* FIXME */
     word-wrap: break-word;
-    /* HACK */
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -737,9 +730,7 @@ footer .business_nfo .nfo {
 
 .card_item_wrapper.grid_bars .actions {
     clear:both;
-    /* float:right; */
     padding: 10px 20px 0px 15px;
-    /* HACK */
      position: absolute;
      bottom: 20px;
      right: 20px;
@@ -855,7 +846,6 @@ footer .business_nfo .nfo {
 }
 
 .product_detail_wrapper .product_actions .price{
-    /* TODO */
     padding-left: 10px;
     color: #B12704;
     font-size: 40px;
@@ -1136,5 +1126,13 @@ footer .business_nfo .nfo {
 }
 
 .pp_button {
+    display:flex;
+    flex-wrap:wrap;
     margin-top:10px
+}
+
+.pp_button div {
+    display: inline-flex;
+    flex-grow:1;
+    justify-content: center;
 }
