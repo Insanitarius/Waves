@@ -28,7 +28,7 @@ router.post(
 
 router.post(
   "/removefromcart",
-  auth("deleteOwn", "profile"),
+  auth("updateOwn", "profile"),
   usersController.removeFromCart
 );
 

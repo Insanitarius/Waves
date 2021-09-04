@@ -33,7 +33,7 @@ let grantObject = {
     },
     transaction: {
       "create:any": ["*"],
-      "read:own": ["*"],
+      "read:any": ["*"],
     },
   },
 };
