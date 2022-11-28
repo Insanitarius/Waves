@@ -65,7 +65,7 @@ const Shop = () => {
 
   useEffect(() => {
     dispatch(getAllBrands());
-    dispatch(productsByPaginate());
+    // dispatch(productsByPaginate());
   }, [dispatch]);
 
   useEffect(() => {
