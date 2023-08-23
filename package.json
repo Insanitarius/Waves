@@ -2,7 +2,7 @@
   "name": "waves",
   "version": "1.0.0",
   "description": "A website to buy guitars",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server/server.js",
     "server": "nodemon server/server.js",
