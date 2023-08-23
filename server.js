@@ -4,11 +4,11 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 const xss = require("xss-clean");
 const mongoSanitize = require("express-mongo-sanitize");
-const routes = require("./routes");
+const routes = require("./server/routes");
 const passport = require("passport");
 
-const { handleError, convertToApiError } = require("./middleware/apiError");
-const { jwtStrategy } = require("./middleware/passport");
+const { handleError, convertToApiError } = require("./server/middleware/apiError");
+const { jwtStrategy } = require("./server/middleware/passport");
 
 const mongoURI = `${process.env.DATABASE}`;
 mongoose.connect(mongoURI, {
